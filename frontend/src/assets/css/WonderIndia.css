@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins%3Awght%3A300%3B400%3B500%3B600%3B700%3B800%3B900&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-font: 'Poppins', sans-serif;
+  --light-white: #f5f8fa;
+  --gray: #5e6278;
+  --gray-1: #e3e3e3;
+}
+
+/* Stili per la section className="Wrapper" */
+.Wrapper { 
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh; /* Assicura che lo sfondo copra l'intera altezza */
+  padding-top: 50px; 
+  padding-bottom: 50px; /* Aggiunto padding-bottom */
+}
+
+/* ★★★ Stili per la Form id="signup" ★★★ */
+#signup {
+  background-color: rgba(255, 255, 255, 0.5); /* Sfondo semitrasparente */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 2rem;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+#signup:hover {
+  background: rgba(255, 255, 255, 0.632);
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.35);
+}
+
+/* Stili per gli input dentro il Wrapper */
+.Wrapper input {
+  background-color: var(--light-white);
+  border-color: var(--light-white);
+  color: var(--gray);
+}
+
+.Wrapper input:focus {
+  box-shadow: none;
+}

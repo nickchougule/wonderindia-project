@@ -1,0 +1,341 @@
+/* ================= Navbar Styling ================= */
+body {
+  overflow-x: hidden;
+  padding-top: 40px;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  background-color: #fff;
+  padding: 10px 20px;
+}
+
+.navbar-brand img {
+  height: 70px;
+  width: auto;
+}
+
+.navbar .nav-link {
+  font-weight: 500;
+  margin-left: 15px;
+  transition: 0.3s;
+}
+
+.navbar .nav-link.active {
+  color: #ff6600 !important;
+  font-weight: 600;
+}
+
+.navbar .nav-link:hover {
+  color: #ff6600 !important;
+}
+
+/* Buttons */
+.navbar .btn.btn-signup {
+  border: 1px solid #ff6600;
+  color: #ff6600 !important;
+  border-radius: 20px;
+  padding: 6px 18px;
+  transition: 0.3s;
+}
+
+.navbar .btn.btn-signup:hover {
+  background-color: #e05500;
+  color: #fff !important;
+  transform: scale(1.1);
+}
+
+.navbar .btn.btn-signin {
+  border: 1px solid #ff6600;
+  border-radius: 20px;
+  padding: 6px 18px;
+  color: #ff6600 !important;
+  transition: 0.3s;
+}
+
+.navbar .btn.btn-signin:hover {
+  background-color: #ff6600;
+  color: #fff !important;
+  transform: scale(1.1);
+}
+
+/* ================= Hero Section ================= */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 8%;
+  min-height: 80vh;
+  flex-wrap: wrap;
+  /* ensures wrapping on smaller screens */
+}
+
+.hero-content {
+  flex: 1;
+  max-width: 50%;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #555;
+}
+
+.btn-explore {
+  display: inline-block;
+  background: #ff6600;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.btn-explore:hover {
+  background: #e05500;
+}
+
+/* ================= Hero Images ================= */
+.hero-images {
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Desktop default */
+.hero-images img {
+  width: 320px;
+  border-radius: 20px;
+
+  position: absolute;
+  transition: transform 0.3s ease;
+}
+
+
+
+/* Main image */
+.img-1 {
+  top: -50px;
+  left: 70px;
+  z-index: 1;
+}
+
+/* Second image */
+.img-2 {
+  top: 40px;
+  left: 250px;
+  z-index: 2;
+  border: 10px solid white;
+  height: 450px;
+}
+
+/* Third image (if added later) */
+.img-3 {
+  top: 120px;
+  right: 460px;
+  z-index: 2;
+  border: 10px solid white;
+}
+
+/* ================= Responsive ================= */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .hero-content {
+    max-width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .hero-images {
+    height: 350px;
+  }
+
+  .hero-images img {
+    width: 220px;
+  }
+
+  .img-1 {
+    top: 0;
+    left: 20%;
+  }
+
+  .img-2 {
+    top: 60px;
+    left: 45%;
+  }
+
+  .img-3 {
+    top: 120px;
+    left: 25%;
+  }
+}
+
+/* Mobiles */
+@media (max-width: 576px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 5%;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .hero-images {
+    height: 280px;
+  }
+
+  .hero-images img {
+    width: 160px;
+    /* shrink images for small screen */
+  }
+
+  .img-1 {
+    top: 0;
+    left: 15%;
+  }
+
+  .img-2 {
+    top: 70px;
+    left: 45%;
+    height: auto;
+  }
+
+  .img-3 {
+    top: 170px;
+    left: 5%;
+  }
+}
+
+/* Services Section */
+.services {
+  background-color: #f9f9f9;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: #777;
+  margin-bottom: 40px;
+}
+
+.service-card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+  height: 100%;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+}
+
+.service-icon {
+  font-size: 40px;
+  color: #ff6600;
+  margin-bottom: 15px;
+}
+
+.destination-number {
+  color: #ff6600;
+  /* orange to match theme */
+  font-weight: bold;
+  margin-right: 8px;
+  /* space between number and title */
+  font-size: 1.2em;
+  /* slightly bigger */
+}
+
+
+.TopDestination .card {
+  transition: transform 0.3s ease;
+}
+
+.TopDestination .card:hover {
+  transform: translateY(-10px);
+}
+
+.step-icon {
+  font-size: 1.8rem;
+  background: #ff6600;
+  color: #fff;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+.BookingSteps {
+  background-color: #f9f9f9;
+}
+
+footer {
+  background-color: #000;
+  /* black background */
+  color: #fff;
+  /* white text */
+}
+
+footer a.footer-link {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+footer a.footer-link:hover {
+  color: #f8c146;
+  /* golden hover effect */
+}
+
+footer .social-icon {
+  color: #fff;
+  font-size: 1.5rem;
+  transition: color 0.3s;
+}
+
+footer .social-icon:hover {
+  color: #f8c146;
+  /* golden hover for icons */
+}
+
+html:focus-within {
+  scroll-behavior: auto !important;
+}
+
+
+/* .BookingSteps h1{
+  font-family: 'Times New Roman', Times, serif;
+} */

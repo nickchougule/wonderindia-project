@@ -1,0 +1,23 @@
+/* Paste all the CSS from your original <style> block into this file. */
+
+.parallax-section {
+  /* This path works because this CSS is in /Css/ 
+     and the image is in /Images/ */
+  background-image: url('../images/ladakhBikeride.jpg');
+  height: 70vh;
+  background-attachment: fixed;
+  /* The parallax magic */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  color: white;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* NOTE: This 'body' style should ideally be in your main 'WIindex.css' 
+  file to apply the navbar offset to *all* pages, not just this one.
+*/
+body {
+  padding-top: 100px;
+}

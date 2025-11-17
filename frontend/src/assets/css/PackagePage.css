@@ -1,0 +1,235 @@
+/* Paste all the CSS from your original <style> block into this file. */
+
+:root {
+  --primary-color: #ff6b35;
+  --secondary-color: #004d7a;
+  --accent-color: #ffd23f;
+  --success-color: #2d5016;
+  --light-bg: #f8f9fa;
+  --dark-text: #2c3e50;
+}
+
+/* NOTE: The 'padding-top: 90px;' for the 'body' tag should be in your 
+   main 'WIindex.css' file since it's needed on every page 
+   to offset the fixed navbar.
+*/
+
+.hero-banner {
+  /* Updated path to work from the 'assets' folder structure.
+    This CSS file is in /Css/, so it goes up one level (../) 
+    and then into /Images/.
+  */
+  background: linear-gradient(135deg, rgba(255,165,0,0.7), rgba(255,255,255,0.7), rgba(0,128,0,0.7));
+  background-size: cover;
+  background-position: center;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+}
+
+.hero-banner h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.hero-banner p {
+  font-size: 1.2rem;
+  margin-bottom: 0;
+}
+
+.filter-section {
+  background: var(--light-bg);
+  padding: 2rem 0;
+}
+
+/* These are <Button> components now, but your class works fine.
+  We just need to adjust the .active state to match react-bootstrap
+*/
+.filter-btn {
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--primary-color);
+  background: white;
+  color: var(--primary-color);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.filter-btn:hover,
+.filter-btn.active, /* This is the class react-bootstrap adds */
+.filter-btn:active, /* Added this for better click feedback */
+.filter-btn:focus {
+  background: var(--primary-color) !important;
+  color: white !important;
+  border-color: var(--primary-color) !important;
+  box-shadow: none !important; /* Override default bootstrap focus */
+}
+
+/* Keep .filter-btn:hover separate if you want a non-!important hover */
+.filter-btn:hover {
+   background: var(--primary-color);
+   color: white;
+}
+
+
+.package-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  background: white;
+  height: 100%;
+  margin-bottom: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Added a hover effect */
+}
+
+/* Added a hover effect like on your destinations page */
+.package-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.card-body {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.card-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--dark-text);
+}
+
+.card-subtitle {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.price {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--success-color);
+}
+
+.original-price {
+  font-size: 0.9rem;
+  color: #999;
+  text-decoration: line-through;
+  margin-right: 0.5rem;
+}
+
+.discount-badge {
+  background: #dc3545;
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  text-align: left;
+  /* Added min-height to prevent layout jumps */
+  min-height: 60px; 
+}
+
+.features-list li {
+  padding: 0.3rem 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.package-card img {
+  height: 220px;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.package-card {
+  margin-bottom: 30px;
+}
+
+.btn-book {
+  background: var(--primary-color);
+  border: none;
+  border-radius: 5px;
+  padding: 0.7rem 1.5rem;
+  color: white;
+  font-weight: 600;
+  width: 100%;
+  text-decoration: none; /* Added to ensure link doesn't underline */
+}
+
+.btn-book:hover {
+  background: #e55a2b;
+  color: white; /* Ensure text stays white on hover */
+}
+
+.search-section {
+  background: white;
+  padding: 1rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.search-input {
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  padding: 0.7rem 1rem;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--dark-text);
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+/* Footer styles. These should really be in your main 'WIindex.css'
+  if the footer is shared on all pages.
+*/
+footer {
+  background: var(--dark-text);
+  color: white;
+  padding: 2rem 0 1rem;
+}
+
+.footer-social a {
+  color: white;
+  margin: 0 0.5rem;
+  text-decoration: none;
+}
+
+.footer-social a:hover {
+  color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+  .hero-banner h1 {
+    font-size: 2rem;
+  }
+
+  .hero-banner p {
+    font-size: 1rem;
+  }
+}

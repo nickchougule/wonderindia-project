@@ -1,0 +1,60 @@
+/* Paste all the CSS from your original <style> block */
+
+/* NOTE: 'padding-top: 100px;' on the body should be in your 
+  main 'WIindex.css' as a general rule for all pages.
+  If it's *only* for this page, you can add a 'destination-page' 
+  wrapper div and style that.
+*/
+
+/* Parallax Hero */
+.parallax-hero {
+  /* This path works because this CSS is in /Css/ 
+     and the image is in /Images/ */
+  background: url('../images/4ktajmahal.jpg') center/cover no-repeat fixed;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+/* Destination cards */
+/* I changed your original .destination-card img selector 
+  to a class for better targeting in React Bootstrap.
+*/
+.destination-card-img {
+  height: 220px;
+  object-fit: cover;
+  /* Removed border-radius, as the <Card.Img> handles this */
+}
+
+.filter-bar {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: -50px; /* This is what pulls it over the hero */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative; /* Added to ensure it's on top */
+  z-index: 2;         /* Added to ensure it's on top */
+}
+
+/* Card Hover Effect */
+#destinations .card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%; /* Makes cards in a row the same height */
+}
+
+#destinations .card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Ensure btn-primary matches your other pages */
+.btn-primary {
+  background: #ff6b35; /* Using --primary-color from your other files */
+  border: none;
+}
+.btn-primary:hover {
+  background: #e55a2b; /* A darker shade */
+}

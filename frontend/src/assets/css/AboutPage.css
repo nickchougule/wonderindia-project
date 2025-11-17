@@ -1,0 +1,146 @@
+/* Paste all the code from your original <style> block into this file.
+  The image path 'url('../Images/aboutus-bg.jpg')' 
+  will work correctly from here.
+*/
+
+:root {
+  --primary-color: #ff6b35;
+  --secondary-color: #004d7a;
+  --light-bg: #f8f9fa;
+  --dark-text: #2c3e50;
+}
+
+/* NOTE: The 'padding-top: 90px;' for the 'body' tag should be in your 
+  main 'WIindex.css' file since it's needed on every page 
+  to offset the fixed navbar.
+*/
+
+
+/* Simple Hero Banner */
+.hero-banner {
+  /* This path works because this CSS file is in /Css/ 
+     and the image is in /Images/ */
+  background: linear-gradient(rgba(255, 165, 0, 0.7), rgba(255, 165, 0, 0.7)); /* Added a subtle overlay to match 'linear-gradient(orange)' */
+  background-size: cover;
+  background-position: center;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+}
+
+.hero-banner h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.hero-banner p {
+  font-size: 1.1rem;
+  margin-bottom: 0;
+}
+
+/* Simple Sections */
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--dark-text);
+  margin-bottom: 2rem;
+}
+
+.mission-vision-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  margin-bottom: 2rem;
+  text-align: center;
+  height: 100%; /* Added to make cards same height */
+}
+
+.mission-vision-card h4 {
+  color: var(--primary-color);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+/* Simple Icon Boxes */
+.icon-box {
+  text-align: center;
+  padding: 2rem;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  margin-bottom: 2rem;
+  height: 100%; /* Added to make cards same height */
+}
+
+.icon-box i {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.icon-box h5 {
+  color: var(--dark-text);
+  font-weight: 600;
+}
+
+/* Simple Team Section */
+.team-member {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.team-member img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border: 3px solid var(--primary-color);
+}
+
+.team-member h5 {
+  color: var(--dark-text);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.team-member p {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Simple Footer */
+/* NOTE: Footer styles should be in your main 'WIindex.css' 
+  if the footer is on every page.
+*/
+footer {
+  background: var(--dark-text);
+  color: white;
+  padding: 2rem 0 1rem;
+}
+
+.footer-social a {
+  color: white;
+  margin: 0 0.5rem;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.footer-social a:hover {
+  color: var(--primary-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-banner h1 {
+    font-size: 2rem;
+  }
+
+  .hero-banner p {
+    font-size: 1rem;
+  }
+}
