@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:5000/api",
+  // ★ CHANGE THIS LINE
+  baseURL: "https://wonderindia-backend.onrender.com/api", // Use your live Render URL
 });
 
 // Add token to every request if logged in
