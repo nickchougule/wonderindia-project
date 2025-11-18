@@ -1,128 +1,130 @@
-import React from 'react';
+import React, { useState } from 'react';
 // 1. Import 'Link' for navigation
 import { Link, useNavigate } from 'react-router-dom';
 
-// ★ 2. IMPORT THE 'useAuth' HOOK
-import { useAuth } from '../context/AuthContext'; // Adjust path if needed
+// Import the useAuth hook
+import { useAuth } from '../context/AuthContext'; 
 
 // Import your assets
 import '../assets/css/WIindex.css';
 import logo from '../assets/images/WonderIndiaIndianStyle-removebg-preview.png';
 
+// Import Bootstrap components
+import { Navbar as BootstrapNavbar, Nav, Container } from 'react-bootstrap';
+
 function Navbar() { 
   const navigate = useNavigate();
-
-  // ★ 3. GET THE *LIVE* USER STATE & 'setUser' FROM CONTEXT
-  // 'user' will now update automatically when you call setUser in Login.js
   const { user, setUser } = useAuth();
 
-  // ★ 4. DEBUGGING: See what the 'user' object contains
-  // Check your browser's console (F12) to see what properties
-  // your user object has (e.g., .name, .email, .username)
-  console.log('USER OBJECT IN NAVBAR:', user);
+  // ★ 1. NEW STATE TO CONTROL THE MENU
+  const [expanded, setExpanded] = useState(false);
 
-  // ★ 5. UPDATED LOGOUT FUNCTION
+  // ★ 2. HELPER FUNCTION TO CLOSE MENU
+  const closeNav = () => setExpanded(false);
+
   const handleLogout = (e) => {
-    e.preventDefault(); // Prevent link jump
+    e.preventDefault(); 
     
-    // Clear the global state
+    // Clear global state & local storage
     setUser(null);
-    
-    // Clear localStorage
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     
-    // Navigate to login using React Router
+    // Close the menu manually after logout
+    closeNav();
+
     navigate('/login');
   };
 
   return (
-    <nav className="navbar navbar-expand-lg fixed-top">
-      <div className="container-fluid">
-        <Link className="navbar-brand" to="/">
+    // ★ 3. PASS 'expanded' AND 'onToggle' PROPS
+    <BootstrapNavbar 
+      expanded={expanded} 
+      onToggle={setExpanded} 
+      expand="lg" 
+      fixed="top"
+      className="bg-white shadow-sm" // Added some styling classes for better look
+    >
+      <Container fluid>
+        <BootstrapNavbar.Brand as={Link} to="/" onClick={closeNav}>
           <img
             src={logo}
             alt="WonderIndia Logo"
             height="80px"
           />
-        </Link>
+        </BootstrapNavbar.Brand>
         
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+        <BootstrapNavbar.Toggle aria-controls="navbarSupportedContent">
           <span className="navbar-toggler-icon"></span>
-        </button>
+        </BootstrapNavbar.Toggle>
 
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <BootstrapNavbar.Collapse id="navbarSupportedContent">
           {/* Navigation Links */}
-          <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Link className="nav-link" to="/">Home</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/services">Services</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/destinations">Top Destinations</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/packages">Packages</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/about">About Us</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/contact">Contact</Link>
-            </li>
-          </ul>
+          <Nav className="mx-auto mb-2 mb-lg-0">
+            <Nav.Link as={Link} to="/" onClick={closeNav}>Home</Nav.Link>
+            <Nav.Link as={Link} to="/services" onClick={closeNav}>Services</Nav.Link>
+            <Nav.Link as={Link} to="/destinations" onClick={closeNav}>Top Destinations</Nav.Link>
+            <Nav.Link as={Link} to="/packages" onClick={closeNav}>Packages</Nav.Link>
+            <Nav.Link as={Link} to="/about" onClick={closeNav}>About Us</Nav.Link>
+            <Nav.Link as={Link} to="/contact" onClick={closeNav}>Contact</Nav.Link>
+          </Nav>
 
-          {/* ★ 6. CONDITIONAL LOGIN/LOGOUT LOGIC */}
+          {/* Login/Logout Logic */}
           {user ? (
-            // --- If LOGGED IN, show "Profile" dropdown ---
-            <ul className="navbar-nav">
-              <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle btn btn-signin text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            // --- If LOGGED IN ---
+            <Nav>
+              <div className="nav-item dropdown">
+                <a 
+                  className="nav-link dropdown-toggle btn btn-signin text-white" 
+                  href="#" 
+                  role="button" 
+                  data-bs-toggle="dropdown" 
+                  aria-expanded="false"
+                >
                   <i className="bi bi-person-circle me-1"></i>
-                  {/*
-                    ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
-                    ★ IMPORTANT: If your console.log shows the user object has
-                       'email' or 'username' but NOT 'name', you MUST change
-                       this line from {user.name} to {user.email} or {user.username}
-                    ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
-                  */}
                   {user.name} 
                 </a>
                 <ul className="dropdown-menu dropdown-menu-end">
-                  <li><Link className="dropdown-item" to="/profile">My Profile & Bookings</Link></li>
+                  <li>
+                    <Link className="dropdown-item" to="/profile" onClick={closeNav}>
+                      My Profile & Bookings
+                    </Link>
+                  </li>
                   <li><hr className="dropdown-divider" /></li>
-                  <li><a className="dropdown-item" href="#" onClick={handleLogout}>Logout</a></li>
+                  <li>
+                    <a className="dropdown-item" href="#" onClick={handleLogout}>
+                      Logout
+                    </a>
+                  </li>
                 </ul>
-              </li>
-            </ul>
+              </div>
+            </Nav>
           ) : (
-            // --- If LOGGED OUT, show "Signup/Signin" buttons ---
-            <ul className="navbar-nav d-flex flex-lg-row flex-column">
-              <li className="nav-item">
-                <Link className="btn btn-signup me-lg-2 mb-2 mb-lg-0" to="/signup">
+            // --- If LOGGED OUT ---
+            <Nav className="d-flex flex-lg-row flex-column">
+              <Nav.Item className="mb-2 mb-lg-0 me-lg-2">
+                <Link 
+                  className="btn btn-signup w-100" 
+                  to="/signup" 
+                  onClick={closeNav}
+                >
                   Signup
                 </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="btn btn-signin" to="/login">
+              </Nav.Item>
+              <Nav.Item>
+                <Link 
+                  className="btn btn-signin w-100" 
+                  to="/login" 
+                  onClick={closeNav}
+                >
                   Signin
                 </Link>
-              </li>
-            </ul>
+              </Nav.Item>
+            </Nav>
           )}
-        </div>
-      </div>
-    </nav>
+        </BootstrapNavbar.Collapse>
+      </Container>
+    </BootstrapNavbar>
   );
 }
 
