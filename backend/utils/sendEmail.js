@@ -1,36 +1,48 @@
-import nodemailer from 'nodemailer';
+import axios from 'axios';
 import dotenv from 'dotenv';
 dotenv.config();
 
 const sendEmail = async (options) => {
-  // 1. Create a transporter
-  const transporter = nodemailer.createTransport({
-    // ★★★ THE FIX IS HERE ★★★
-    host: process.env.EMAIL_HOST, // Now 'smtp-relay.brevo.com'
-    port: process.env.EMAIL_PORT, // Now '587'
-    secure: false, // Brevo uses false for port 587
-    // ★★★ END OF FIX ★★★
-    auth: {
-      user: process.env.EMAIL_USER, // Your Brevo login email
-      pass: process.env.EMAIL_PASS, // Your Brevo SMTP Key
-    },
-  });
+  const senderEmail = process.env.EMAIL_USER;
+  const apiKey = process.env.EMAIL_PASS; // Your xkeysib- key
 
-  // 2. Define the email options
-  const mailOptions = {
-    from: `WonderIndia <${process.env.EMAIL_USER}>`, // This will now be your Brevo email
-    to: options.email,
+  // Brevo API Endpoint
+  const url = 'https://api.brevo.com/v3/smtp/email';
+
+  const data = {
+    sender: { 
+      name: "WonderIndia", 
+      email: senderEmail 
+    },
+    to: [
+      { email: options.email }
+    ],
     subject: options.subject,
-    text: options.message,
+    htmlContent: `
+      <html>
+        <body>
+          <p>${options.message.replace(/\n/g, "<br>")}</p>
+        </body>
+      </html>
+    `
   };
 
-  // 3. Actually send the email
   try {
-    await transporter.sendMail(mailOptions);
-    console.log('✅ Email (Brevo) sent successfully');
+    const response = await axios.post(url, data, {
+      headers: {
+        'accept': 'application/json',
+        'api-key': apiKey,
+        'content-type': 'application/json'
+      }
+    });
+    
+    console.log('✅ Email sent via Brevo API');
+    return response.data;
+
   } catch (error) {
-    console.error('❌ Error sending email (Brevo):', error);
-    throw error;
+    console.error('❌ Error sending email API:', error.response ? error.response.data : error.message);
+    // Important: Throw error so the frontend knows it failed
+    throw new Error(error.response?.data?.message || "Email sending failed");
   }
 };
 
